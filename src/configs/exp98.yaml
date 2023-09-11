@@ -1,0 +1,38 @@
+general:
+  project_name: atma2023
+  input_path: ../data/input
+  output_path: ../data/output
+  save_name: exp98_toriaezu
+  seed: &seed 42
+  cv: true
+  wandb_desabled: false
+  fold: [0, 1, 2, 3, 4] # list (0-idx start) or null. set one element list, hold-out mode.
+  n_splits: 5
+
+train_noid: true
+drop_features_noid: ["genres", "japanese_name", "aired", "producers", "licensors", "studios", "user_id", "user_id_counts", "anime_id_counts"]
+train_with_id: false
+drop_features_with_id: ["genres", "japanese_name", "aired", "producers", "licensors", "studios", "anime_id", "watching", "completed", "on_hold", "dropped", "plan_to_watch", "genres_num_count", "producers_num_count", "licensors_num_count", "studios_num_count", "user_members_min", "user_members_max", "user_members_mean", "user_members_std", "user_watching_min", "user_watching_max", "user_watching_mean", "user_watching_std", "user_completed_min", "user_completed_max", "user_completed_mean", "user_completed_std", "user_on_hold_min", "user_on_hold_max", "user_on_hold_mean", "user_on_hold_std", "user_dropped_min", "user_dropped_max", "user_dropped_mean", "user_dropped_std", "user_plan_to_watch_min", "user_plan_to_watch_max", "user_plan_to_watch_mean", "user_plan_to_watch_std"]
+
+model:
+  name: lightgbm
+  params:
+    objective: regression
+    metric: rmse
+    learning_rate": 0.1
+    feature_fraction": 0.5
+    bagging_freq": 0
+    bagging_fraction": 1
+    seed: *seed
+model_noid:
+  name: lightgbm
+  params:
+    objective: regression
+    metric: rmse
+    learning_rate": 0.1
+    feature_fraction": 0.5
+    bagging_freq": 0
+    bagging_fraction": 1
+    seed: *seed
+
+model_save: true
